@@ -85,12 +85,6 @@ Your listings:
 /mybooks
 ```
 
-## Database Notes
-- Automatic table creation via `init_db()` on startup
-- SQLite default is suitable for development
-- For production prefer PostgreSQL (`postgresql://`) — driver upgraded to `postgresql+asyncpg` automatically
-- `BookRequest` table exists for future swap/interest workflow (currently unused in handlers)
-
 ## Extending
 Potential additions:
 - Book images (Telegram photo uploads + file storage)
