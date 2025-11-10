@@ -1,129 +1,195 @@
-# Book Swap Bot
+# Book Swap Marketplace Bot
 
-A Telegram bot that lets users list books they own and browse books from other users to facilitate local book exchanges.
+Async-first Telegram marketplace for student textbook swaps. Users list used books via conversational flows, browse available listings inside Telegram, and query a lightweight Starlette JSON API.
 
 ## Features
-- /start welcome & help message
-- /addbook quick one-line format: `/addbook Title|Author|Condition(|Optional description)`
-- /addbook guided multi-step flow (title → author → condition → description)
-- /browse list of recent available books from other users (with owner info)
-- /mybooks view your own listings
-- Automatic user creation & profile updating on interaction
-- Persistent storage with SQLModel (SQLAlchemy) + async engine (SQLite by default, PostgreSQL supported)
-- Clean async architecture with Aiogram 3
-
-## Tech Stack
-- Python 3.11+
-- [Aiogram 3](https://github.com/aiogram/aiogram) (async Telegram Bot API framework)
-- SQLModel + SQLAlchemy Async (data models & ORM)
+- 📱 Telegram bot built with aiogram 3 (async).
+- 🧭 Guided listing flow with FSM, condition keyboards, and confirmation step.
+- 🔍 Browse flow with pagination and instant "contact seller" actions that notify both parties.
+- ✅ Seller-only controls to mark items as sold.
+- 🌐 Starlette API (`/healthz`, `/books`) with filtering and pagination.
+- 🗃️ SQLModel + SQLAlchemy 2.x async stack, tuned for PostgreSQL (asyncpg) with SQLite fallback for local dev.
+- 🛠️ Alembic migrations pre-configured for SQLModel metadata and async engines.
+- ⚙️ Configuration via Pydantic v2 Settings (env vars + optional `.env`).
 
 ## Project Structure
 ```
-app/
-  main.py          # Entry point (bot startup)
-  handlers.py      # Command & message handlers (FSM flows)
-  database.py      # Async engine & session factory, init_db
-  models.py        # SQLModel ORM models (User, Book, BookRequest)
-README.md
+.
+├── alembic.ini
+├── alembic/
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions/
+│       └── 20231003_0001_initial_tables.py
+├── bot/
+│   ├── __init__.py
+│   ├── bot.py
+│   ├── handlers.py
+│   ├── keyboards.py
+│   └── utils.py
+├── config.py
+├── db/
+│   ├── __init__.py
+│   ├── models.py
+│   └── session.py
+├── main.py
+├── requirements.txt
+├── scripts/
+│   └── seed_example.py
+├── web/
+│   ├── __init__.py
+│   └── app.py
+└── README.md
 ```
-
-## Data Models (summary)
-- User: telegram_id, display_name, username, timestamps
-- Book: title, author, condition, description, availability, owner relation
-- BookRequest: (scaffolded) for future request / swap workflow
 
 ## Prerequisites
 - Python 3.11+
-- A Telegram Bot Token (create via @BotFather)
-- (Optional) PostgreSQL database URL if not using default SQLite
+- PostgreSQL (recommended) or SQLite for local testing
+- Telegram bot token from [@BotFather](https://t.me/BotFather)
 
 ## Installation
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
-pip install --upgrade pip
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Environment Variables
-Create a `.env` file in project root:
-```
-BOT_TOKEN=123456:ABC-YourTelegramBotToken
-# SQLite (default if unspecified)
-# DATABASE_URL=sqlite+aiosqlite:///./data.db
+## Configuration
+Settings are typed via `pydantic-settings` (Pydantic v2). Values are loaded from environment variables and, if present, a `.env` file.
 
-# Optional
-SQL_ECHO=false
-```
-Variables used:
-- BOT_TOKEN (required)
-- DATABASE_URL (optional, else SQLite file `data.db`)
-- SQL_ECHO (true/false) enable SQL echo for debugging
+1. Copy `.env.example` and edit as needed:
+   ```bash
+   cp .env.example .env
+   ```
+2. Update values (at minimum `TELEGRAM_TOKEN` and `DATABASE_URL`).
+   - PostgreSQL example: `postgresql+asyncpg://user:pass@localhost:5432/booksdb`
+   - SQLite example: `sqlite:///./books.db` (automatically promoted to `sqlite+aiosqlite://` for async usage)
 
-## Running Locally
+Available settings (see `config.py` for defaults):
+- `TELEGRAM_TOKEN` (required)
+- `DATABASE_URL` (required)
+- `LOG_LEVEL` (default `INFO`)
+- `PAGE_SIZE` (pagination default, default `10`)
+- `UVICORN_HOST`, `UVICORN_PORT`, `UVICORN_RELOAD`
+- `BOT_POLLING_INTERVAL`, `WEB_CONCURRENCY`
+
+Validation happens at startup; missing/invalid values raise a helpful error.
+
+## Database Migrations
+Run Alembic using the async-aware configuration.
+
 ```bash
-python app/main.py
-```
-On first run tables are created automatically.
-
-## Usage Examples
-Quick add (no prompts):
-```
-/addbook The Hobbit|J.R.R. Tolkien|like new|Collectors illustrated edition
-```
-Guided flow:
-```
-/addbook
-# Bot asks for each field sequentially
-```
-Browse books:
-```
-/browse
-```
-Your listings:
-```
-/mybooks
+alembic upgrade head
 ```
 
-## Extending
-Potential additions:
-- Book images (Telegram photo uploads + file storage)
-- Inline keyboards for requesting books & marking completed swaps
-- Implement BookRequest flow (request, accept, decline)
-- Pagination & filtering (author, title search, condition)
-- Admin / moderation commands
-- Rate limiting & anti-spam
-- Docker & CI workflow
+Common commands:
+- Generate new migration: `alembic revision --autogenerate -m "add something"`
+- Roll back: `alembic downgrade -1`
 
-## Minimal Docker Example (optional)
+The provided `env.py` imports `SQLModel.metadata` so autogenerate picks up model changes.
+
+## Internationalization (i18n)
+The bot supports multiple languages via GNU gettext. Currently configured for:
+- **English (en)** - Default language
+- **Persian (fa)** - فارسی
+
+See [I18N_README.md](I18N_README.md) for detailed translation workflow and adding new languages.
+
+**Quick translation update:**
+```bash
+# Extract strings from code
+xgettext --from-code=UTF-8 --language=Python --keyword=T \
+  --output=locale/messages.pot --add-comments app/bot/*.py
+
+# Compile translations
+msgfmt locale/fa/LC_MESSAGES/messages.po -o locale/fa/LC_MESSAGES/messages.mo
 ```
-docker build -t book-swap-bot .
-docker run --env-file .env --name book-swap-bot book-swap-bot
+
+## Running the Stack
+Launch both the Telegram bot and Starlette API with the unified entrypoint:
+
+```bash
+python main.py
 ```
 
-## Logging
-Configured at INFO level. Adjust by editing `logging.basicConfig` in `main.py` if needed.
+This starts:
+- aiogram long polling (async) for Telegram updates.
+- Uvicorn-powered Starlette server on `http://<UVICORN_HOST>:<UVICORN_PORT>`.
 
-## Deployment Tips
-- Use systemd / Docker for process supervision
-- Keep BOT_TOKEN secret (env var, not hardcoded)
-- Use PostgreSQL for concurrency & reliability
-- Enable structured logging (JSON) for observability if scaling
+Graceful shutdown: `Ctrl+C` (SIGINT) stops both services, closes DB connections, and disposes the async engine.
 
-## Security Considerations
-- Do not log sensitive tokens
-- Validate / sanitize user input if adding richer features
-- Consider per-user rate limits for heavy future operations
+### Alternative: run web app only
+```bash
+uvicorn web.app:app --host 0.0.0.0 --port 8000
+```
 
-## Contributing
-1. Fork & branch
-2. Add / modify features with tests (if test suite added later)
-3. Open PR with concise description
+## Usage
+### API
+```bash
+curl http://localhost:8000/healthz
+curl "http://localhost:8000/books?page=1&per_page=10"
+curl "http://localhost:8000/books?author=Rowling&condition=like_new"
+```
+Response payload:
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Linear Algebra",
+      "author": "Gilbert Strang",
+      "price": "25.00",
+      "condition": "like_new",
+      "is_sold": false,
+      "created_at": "2025-09-01T12:34:56.123456",
+      "seller": {
+        "id": 5,
+        "telegram_id": 12345678,
+        "display": "@seller"
+      },
+      "metadata": null
+    }
+  ],
+  "page": 1,
+  "per_page": 10,
+  "total": 1
+}
+```
 
+### Telegram Bot
+1. `/start` – registers you (upserts user profile) and shows menu.
+2. **Post a book**
+   - Provide title → author (`skip` allowed) → select condition → price → optional description.
+   - Confirm listing to publish.
+3. **Browse books**
+   - Paginated list, buttons to contact sellers.
+   - Contact sends you the seller’s public display name and notifies the seller with your handle.
+4. **My listings**
+   - Lists active books you posted.
+   - Inline buttons let you mark individual listings as sold.
+
+### Example Data Seeder
+Populate sample listings for local demos:
+```bash
+python scripts/seed_example.py
+```
+(Requires the app environment variables to be set.)
+
+## Scripts
+`scripts/seed_example.py` connects via SQLModel, seeds a demo user and a few books, and marks one as sold. Adjust before running in production.
+
+## Development Notes
+- Logging defaults to `INFO`; set `LOG_LEVEL=DEBUG` for SQL echo (automatically toggles SQLAlchemy engine echo).
+- Async DB URL normalisation automatically upgrades `postgresql://` → `postgresql+asyncpg://` and `sqlite://` → `sqlite+aiosqlite://`.
+- `db/session.py` exposes `session_scope()` for bot handlers and Starlette endpoints to share consistent transactional patterns.
+- Alembic downgrade drops the PostgreSQL enum type only when using Postgres, retaining compatibility with SQLite.
+
+## Troubleshooting
+- **Bot not responding**: verify `TELEGRAM_TOKEN`, ensure the process is running, and your machine can reach Telegram.
+- **No books in `/browse` or `/books`**: users haven’t listed anything yet; seed via the script above.
+- **PostgreSQL SSL or driver issues**: confirm the URL uses the `postgresql+asyncpg://` scheme; firewall/SSL issues surface in logs.
+- **Starlette 404s**: ensure Uvicorn is running on the expected host/port.
 
 ## License
-MIT
-
----
-
-Remember that smoking kills, but you'll die anyway even you stop smoking!
+Add your preferred license (MIT/Apache/etc.).
