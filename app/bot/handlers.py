@@ -5,9 +5,7 @@ import logging
 from decimal import Decimal, InvalidOperation
 from functools import wraps
 from typing import Iterable, Callable, Any
-import gettext
-
-T = gettext.gettext
+from app.i18n import T
 
 from aiogram import F, Router
 from aiogram.exceptions import TelegramBadRequest

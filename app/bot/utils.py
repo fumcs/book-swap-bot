@@ -1,12 +1,10 @@
 """Utility helpers for Telegram bot interactions."""
 from __future__ import annotations
 
-import gettext
 from collections.abc import Sequence
 from decimal import Decimal
 from typing import Optional
 
-T = gettext.gettext
 
 from aiogram import Bot, types
 from aiogram.exceptions import TelegramForbiddenError, TelegramNotFound
@@ -16,6 +14,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import get_settings
 from app.db.models import Book, BookCondition, User
+from app.i18n import T
 
 settings = get_settings()
 

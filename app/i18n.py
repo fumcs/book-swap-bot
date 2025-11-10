@@ -3,6 +3,8 @@ import gettext
 import os
 from pathlib import Path
 from typing import Optional
+from app.config import get_settings
+settings = get_settings()
 
 # Get the locale directory path
 LOCALE_DIR = Path(__file__).parent.parent / "locale"
@@ -48,13 +50,8 @@ def init_translations() -> None:
 
 
 # Default translator (English)
-T = get_translator("en")
-
-# Available languages
-AVAILABLE_LANGUAGES = {
-    "en": "English 🇺🇸",
-    "fa": "فارسی 🇮🇷",
-}
+T = get_translator(settings.LOCALE)
 
 
-__all__ = ["get_translator", "init_translations", "T", "AVAILABLE_LANGUAGES", "LOCALE_DIR"]
+
+__all__ = ["T"]

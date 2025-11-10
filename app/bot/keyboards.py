@@ -1,10 +1,9 @@
 """Reusable keyboard factories for the bot."""
 from __future__ import annotations
 
-import gettext
 from typing import Iterable, List, Tuple
+from app.i18n import T
 
-T = gettext.gettext
 
 from aiogram.filters.callback_data import CallbackData
 from aiogram.types import (

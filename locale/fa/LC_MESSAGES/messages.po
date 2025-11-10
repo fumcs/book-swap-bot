@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-10 12:58+0330\n"
+"POT-Creation-Date: 2025-11-10 10:16+0000\n"
 "PO-Revision-Date: 2025-11-10 12:58+0330\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,52 +16,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/bot/utils.py:45
-#, python-brace-format
+#: app/bot/bot.py:51
+msgid "Show welcome menu"
+msgstr "نمایش منوی خوشامدید"
+
+#: app/bot/bot.py:52
+#, fuzzy
+msgid "List a new book"
+msgstr "یک کتاب جدید فهرست کنید"
+
+#: app/bot/bot.py:53
+#, fuzzy
+msgid "Browse available books"
+msgstr "کتاب های موجود را مرور کنید"
+
+#: app/bot/bot.py:54
+#, fuzzy
+msgid "Manage your listings"
+msgstr "فهرست های خود را مدیریت کنید"
+
+#: app/bot/handlers.py:93
 msgid ""
-"<b>{title}</b>\n"
-"Author: {author}\n"
-"Condition: {condition}\n"
-"Price: {price}\n"
-"Listed: {listed}\n"
-"Seller: {seller}\n"
-"Book ID: {book_id}"
+"👋 Welcome to the Book Swap Marketplace!\n"
+"\n"
+"• Post textbooks you want to sell\n"
+"• Browse available books from other students\n"
+"• Manage your active listings\n"
+"\n"
+"Choose an option from the menu below:"
 msgstr ""
+"👋 به بازار مبادله کتاب خوش آمدید!\n"
+"\n"
+"• کتاب هایی که می خواهید بفروشید را بفرستید\n"
+"• کتاب های موجود از دانشجویان دیگر را مرور کنید\n"
+"• فهرست های فعال خود را مدیریت کنید\n"
+"\n"
+"یک گزینه از منوی زیر انتخاب کنید:"
 
-#: app/bot/utils.py:31
-msgid "Acceptable"
-msgstr "قابل قبول"
-
-#: app/bot/handlers.py:186
-msgid "Add an optional description or send 'skip'."
-msgstr "یک توضیح اختیاری اضافه کنید یا 'skip' را بفرستید."
-
-#: app/bot/handlers.py:525
-msgid "Already marked as sold."
-msgstr "قبلاً به عنوان فروخته شده علامت گذاری شده است."
-
-#: app/bot/keyboards.py:48
-msgid "Browse books"
-msgstr "مرور کتاب ها"
-
-#: app/bot/keyboards.py:75
-msgid "Cancel"
-msgstr "لغو"
-
-#: app/bot/handlers.py:389 app/bot/handlers.py:513
-msgid "Contact sent! 👌"
-msgstr ""
-
-#: app/bot/keyboards.py:97 app/bot/keyboards.py:140
-#, python-brace-format
-msgid "Contact: {title}"
-msgstr ""
-
-#: app/bot/utils.py:30
-msgid "Good"
-msgstr ""
-
-#: app/bot/handlers.py:107
+#: app/bot/handlers.py:105
 msgid ""
 "Here are the main commands:\n"
 "/start – show welcome menu\n"
@@ -70,70 +62,54 @@ msgid ""
 "/search – search for specific books\n"
 "/mybooks – manage your listings"
 msgstr ""
+"در اینجا دستورات اصلی آمده است:\n"
+"/start – نمایش منوی خوشامدید\n"
+"/post – شروع فرایند فهرست کردن\n"
+"/browse – مرور کتاب های موجود\n"
+"/search – جستجو برای کتاب های خاص\n"
+"/mybooks – مدیریت فهرست های شما"
 
-#: app/bot/handlers.py:224
-msgid "Invalid price data."
-msgstr ""
+#: app/bot/handlers.py:119
+msgid "❌ You're not in any process to cancel."
+msgstr "❌ شما در هیچ فرآیندی برای لغو نیستید."
 
-#: app/bot/handlers.py:135 app/bot/handlers.py:266
+#: app/bot/handlers.py:122
+msgid "✅ Canceled! Back to the main menu."
+msgstr "✅ لغو شد! بازگشت به منوی اصلی."
+
+#: app/bot/handlers.py:133 app/bot/handlers.py:264
 msgid "Let's list a book! What is the title?"
-msgstr ""
+msgstr "بیایید یک کتاب فهرست کنیم! عنوان چیست؟"
 
-#: app/bot/utils.py:29
-msgid "Like new"
-msgstr ""
+#: app/bot/handlers.py:142
+msgid "Please provide a title."
+msgstr "لطفاً یک عنوان فراهم کنید."
 
-#: app/bot/handlers.py:216
-msgid "Listing cancelled."
-msgstr ""
+#: app/bot/handlers.py:146
+msgid "Who's the author? Send 'skip' if unknown."
+msgstr "نویسنده کیست؟ اگر نمی دانید 'skip' را بفرستید."
 
-#: app/bot/handlers.py:532
-msgid "Listing marked as sold. Refresh /mybooks to see remaining items."
-msgstr ""
+#: app/bot/handlers.py:155
+msgid "Select the condition:"
+msgstr "وضعیت را انتخاب کنید:"
 
-#: app/bot/handlers.py:245
-msgid "Listing published!"
-msgstr ""
-
-#: app/bot/keyboards.py:119
-#, python-brace-format
-msgid "Mark #{book_id} sold"
-msgstr ""
-
-#: app/bot/handlers.py:530
-msgid "Marked as sold."
-msgstr ""
-
-#: app/bot/handlers.py:363 app/bot/handlers.py:487
-msgid "Missing book information."
-msgstr ""
-
-#: app/bot/keyboards.py:49
-msgid "My listings"
-msgstr ""
-
-#: app/bot/utils.py:28
-msgid "New"
-msgstr ""
-
-#: app/bot/keyboards.py:108 app/bot/keyboards.py:153
-msgid "Next ➡️"
-msgstr ""
-
-#: app/bot/handlers.py:312
-msgid "No books are available yet. Try again soon!"
-msgstr ""
-
-#: app/bot/handlers.py:450
-#, python-brace-format
-msgid "No books found for '{query}'"
-msgstr ""
-
-#: app/bot/handlers.py:164
+#: app/bot/handlers.py:162
 msgid "Please choose a condition from the keyboard options."
-msgstr ""
+msgstr "لطفاً یک وضعیت را از گزینه های صفحه کلید انتخاب کنید."
 
-#: app/bot/handlers.py:202
+#: app/bot/handlers.py:167
+msgid "What price are you asking? Use numbers only (e.g., 12.50)."
+msgstr "شما چه قیمتی می خواهید؟ فقط از اعداد استفاده کنید (برای مثال، 12.50)."
+
+#: app/bot/handlers.py:180
+msgid "Please send a valid non-negative price (e.g., 15.00)."
+msgstr "لطفاً یک قیمت معتبر و غیر منفی بفرستید (برای مثال، 15.00)."
+
+#: app/bot/handlers.py:184
+msgid "Add an optional description or send 'skip'."
+msgstr "یک توضیح اختیاری اضافه کنید یا 'skip' را بفرستید."
+
+#: app/bot/handlers.py:200
 #, python-brace-format
 msgid ""
 "Please confirm your listing:\n"
@@ -144,172 +120,46 @@ msgid ""
 "Price: {price}\n"
 "Description: {description}"
 msgstr ""
-
-#: app/bot/handlers.py:422
-msgid "Please enter a search term."
-msgstr ""
-
-#: app/bot/handlers.py:144
-msgid "Please provide a title."
-msgstr ""
-
-#: app/bot/handlers.py:182
-msgid "Please send a valid non-negative price (e.g., 15.00)."
-msgstr ""
-
-#: app/bot/utils.py:32
-msgid "Poor"
-msgstr ""
-
-#: app/bot/keyboards.py:48
-msgid "Post a book"
-msgstr ""
-
-#: app/bot/handlers.py:468
-msgid "Search query not found. Please start a new search."
-msgstr ""
-
-#: app/bot/handlers.py:157
-msgid "Select the condition:"
-msgstr ""
-
-#: app/bot/handlers.py:502
-#, python-brace-format
-msgid ""
-"Seller contact for '<b>{title}</b>': {contact}\n"
-"Mention that you're from the Book Swap Marketplace."
-msgstr ""
-
-#: app/bot/handlers.py:378
-#, python-brace-format
-msgid ""
-"Seller contact for '{title}': {contact}\n"
-"Mention that you're from the Book Swap Marketplace."
-msgstr ""
-
-#: app/bot/handlers.py:371 app/bot/handlers.py:495
-msgid "This listing is no longer available."
-msgstr ""
-
-#: app/bot/handlers.py:374 app/bot/handlers.py:498
-msgid "Unavailable"
-msgstr ""
-
-#: app/bot/handlers.py:205 app/bot/utils.py:49 app/bot/utils.py:53
-msgid "Unknown"
-msgstr ""
-
-#: app/bot/handlers.py:169
-msgid "What price are you asking? Use numbers only (e.g., 12.50)."
-msgstr ""
-
-#: app/bot/handlers.py:148
-msgid "Who's the author? Send 'skip' if unknown."
-msgstr ""
-
-#: app/bot/handlers.py:522
-msgid "You cannot modify this listing."
-msgstr ""
-
-#: app/bot/handlers.py:400
-msgid "You have no active listings right now."
-msgstr ""
-
-#: app/bot/handlers.py:296
-msgid ""
-"You have no active listings right now.\n"
+"لطفاً فهرست خود را تأیید کنید:\n"
 "\n"
-"Use the menu below to post your first book!"
-msgstr ""
+"عنوان: {title}\n"
+"نویسنده: {author}\n"
+"وضعیت: {condition}\n"
+"قیمت: {price}\n"
+"توضیحات: {description}"
 
-#: app/bot/handlers.py:243
+#: app/bot/handlers.py:203 app/bot/utils.py:48 app/bot/utils.py:52
+msgid "Unknown"
+msgstr "نامشخص"
+
+#: app/bot/handlers.py:214
+msgid "Listing cancelled."
+msgstr "فهرست کردن لغو شد."
+
+#: app/bot/handlers.py:222
+msgid "Invalid price data."
+msgstr "داده های قیمت نامعتبر."
+
+#: app/bot/handlers.py:241
 #, python-brace-format
 msgid "✅ Book listed! (ID #{book_id})"
-msgstr ""
+msgstr "✅ کتاب فهرست شد! (شناسه #{book_id})"
 
-#: app/bot/handlers.py:124
-msgid "✅ Canceled! Back to the main menu."
-msgstr ""
+#: app/bot/handlers.py:243
+msgid "Listing published!"
+msgstr "فهرست منتشر شد!"
 
-#: app/bot/keyboards.py:81
-msgid "✅ Confirm"
-msgstr ""
-
-#: app/bot/keyboards.py:82
-msgid "✖️ Cancel"
-msgstr ""
-
-#: app/bot/handlers.py:121
-msgid "❌ You're not in any process to cancel."
-msgstr ""
-
-#: app/bot/keyboards.py:103 app/bot/keyboards.py:148
-msgid "⬅️ Prev"
-msgstr ""
-
-#: app/bot/handlers.py:249
+#: app/bot/handlers.py:247
 msgid ""
 "🎉 Your book has been successfully listed!\n"
 "\n"
 "What would you like to do next?"
 msgstr ""
-
-#: app/bot/handlers.py:95
-msgid ""
-"👋 Welcome to the Book Swap Marketplace!\n"
+"🎉 کتاب شما با موفقیت فهرست شد!\n"
 "\n"
-"• Post textbooks you want to sell\n"
-"• Browse available books from other students\n"
-"• Manage your active listings\n"
-"\n"
-"Choose an option from the menu below:"
-msgstr ""
+"بعد از این چه کار می خواهید انجام دهید؟"
 
-#: app/bot/keyboards.py:60
-msgid "📋 My listings"
-msgstr ""
-
-#: app/bot/handlers.py:314
-#, python-brace-format
-msgid "📚 Page {page}/{total_pages}"
-msgstr ""
-
-#: app/bot/keyboards.py:57
-msgid "📚 Post a book"
-msgstr ""
-
-#: app/bot/utils.py:132
-#, python-brace-format
-msgid ""
-"📚 Someone is interested in your book!\n"
-"\n"
-"Book: {book_title}\n"
-"Buyer: {buyer_contact}\n"
-"Reply directly in Telegram to arrange the exchange."
-msgstr ""
-
-#: app/bot/handlers.py:408
-msgid "📚 Your active listings:"
-msgstr ""
-
-#: app/bot/keyboards.py:58
-msgid "🔍 Browse books"
-msgstr ""
-
-#: app/bot/handlers.py:433
-#, python-brace-format
-msgid ""
-"🔍 No books found for '<b>{query}</b>'\n"
-"\n"
-"Try different keywords or browse all books instead."
-msgstr ""
-
-#: app/bot/handlers.py:452
-#, python-brace-format
-msgid "🔍 Search results for '<b>{query}</b>' - Page {page}/{total_pages}"
-msgstr ""
-
-#: app/bot/handlers.py:279 app/bot/handlers.py:336
+#: app/bot/handlers.py:277 app/bot/handlers.py:334
 msgid ""
 "🔎 <b>Search Books</b>\n"
 "\n"
@@ -320,11 +170,235 @@ msgid ""
 "\n"
 "Type your search term:"
 msgstr ""
+"🔎 <b>جستجوی کتاب ها</b>\n"
+"\n"
+"کلمات کلیدی را برای جستجو در موارد زیر وارد کنید:\n"
+"• عنوان\n"
+"• نویسنده\n"
+"• توضیحات\n"
+"\n"
+"اصطلاح جستجوی خود را تایپ کنید:"
 
-#: app/bot/keyboards.py:159
-msgid "🔎 New Search"
+#: app/bot/handlers.py:294
+msgid ""
+"You have no active listings right now.\n"
+"\n"
+"Use the menu below to post your first book!"
 msgstr ""
+"در حال حاضر هیچ فهرست فعالی ندارید.\n"
+"\n"
+"از منوی زیر برای انتشار اولین کتاب خود استفاده کنید!"
+
+#: app/bot/handlers.py:310
+msgid "No books are available yet. Try again soon!"
+msgstr "هیچ کتابی در حال حاضر موجود نیست. به زودی دوباره سعی کنید!"
+
+#: app/bot/handlers.py:312
+#, python-brace-format
+msgid "📚 Page {page}/{total_pages}"
+msgstr "📚 صفحه {page}/{total_pages}"
+
+#: app/bot/handlers.py:361 app/bot/handlers.py:485
+msgid "Missing book information."
+msgstr "اطلاعات کتاب ناقص است."
+
+#: app/bot/handlers.py:369 app/bot/handlers.py:493
+msgid "This listing is no longer available."
+msgstr "این فهرست دیگر موجود نیست."
+
+#: app/bot/handlers.py:372 app/bot/handlers.py:496
+msgid "Unavailable"
+msgstr "در دسترس نیست"
+
+#: app/bot/handlers.py:376
+#, python-brace-format
+msgid ""
+"Seller contact for '{title}': {contact}\n"
+"Mention that you're from the Book Swap Marketplace."
+msgstr ""
+"تماس فروشنده برای '{title}': {contact}\n"
+"اشاره کنید که از بازار مبادله کتاب هستید."
+
+#: app/bot/handlers.py:387 app/bot/handlers.py:511
+msgid "Contact sent! 👌"
+msgstr "مخاطب ارسال شد! 👌"
+
+#: app/bot/handlers.py:398
+msgid "You have no active listings right now."
+msgstr "در حال حاضر هیچ فهرست فعالی ندارید."
+
+#: app/bot/handlers.py:406
+msgid "📚 Your active listings:"
+msgstr "📚 فهرست های فعال شما:"
+
+#: app/bot/handlers.py:420
+msgid "Please enter a search term."
+msgstr "لطفاً یک اصطلاح جستجو وارد کنید."
+
+#: app/bot/handlers.py:431
+#, python-brace-format
+msgid ""
+"🔍 No books found for '<b>{query}</b>'\n"
+"\n"
+"Try different keywords or browse all books instead."
+msgstr ""
+"🔍 هیچ کتابی برای '<b>{query}</b>' پیدا نشد\n"
+"\n"
+"سعی کنید کلمات کلیدی متفاوتی استفاده کنید یا تمام کتاب ها را مرور کنید."
+
+#: app/bot/handlers.py:448
+#, python-brace-format
+msgid "No books found for '{query}'"
+msgstr "هیچ کتابی برای '{query}' پیدا نشد"
+
+#: app/bot/handlers.py:450
+#, python-brace-format
+msgid "🔍 Search results for '<b>{query}</b>' - Page {page}/{total_pages}"
+msgstr "🔍 نتایج جستجو برای '<b>{query}</b>' - صفحه {page}/{total_pages}"
+
+#: app/bot/handlers.py:466
+msgid "Search query not found. Please start a new search."
+msgstr "درخواست جستجو پیدا نشد. لطفاً یک جستجوی جدید شروع کنید."
+
+#: app/bot/handlers.py:500
+#, python-brace-format
+msgid ""
+"Seller contact for '<b>{title}</b>': {contact}\n"
+"Mention that you're from the Book Swap Marketplace."
+msgstr ""
+"تماس فروشنده برای '<b>{title}</b>': {contact}\n"
+"اشاره کنید که از بازار مبادله کتاب هستید."
+
+#: app/bot/handlers.py:520
+msgid "You cannot modify this listing."
+msgstr "شما نمی توانید این فهرست را تغییر دهید."
+
+#: app/bot/handlers.py:523
+msgid "Already marked as sold."
+msgstr "قبلاً به عنوان فروخته شده علامت گذاری شده است."
+
+#: app/bot/handlers.py:528
+msgid "Marked as sold."
+msgstr "به عنوان فروخته شده علامت گذاری شد."
+
+#: app/bot/handlers.py:530
+msgid "Listing marked as sold. Refresh /mybooks to see remaining items."
+msgstr ""
+"فهرست به عنوان فروخته شده علامت گذاری شد. /mybooks را برای دیدن آیتم های "
+"باقی مانده تازه کنید."
+
+#: app/bot/keyboards.py:47
+msgid "Post a book"
+msgstr "یک کتاب ارسال کنید"
+
+#: app/bot/keyboards.py:47
+msgid "Browse books"
+msgstr "مرور کتاب ها"
+
+#: app/bot/keyboards.py:48
+msgid "My listings"
+msgstr "فهرست های من"
+
+#: app/bot/keyboards.py:56
+msgid "📚 Post a book"
+msgstr "📚 یک کتاب ارسال کنید"
+
+#: app/bot/keyboards.py:57
+msgid "🔍 Browse books"
+msgstr "🔍 مرور کتاب ها"
+
+#: app/bot/keyboards.py:58
+msgid "🔎 Search books"
+msgstr "🔎 جستجوی کتاب ها"
 
 #: app/bot/keyboards.py:59
-msgid "🔎 Search books"
+msgid "📋 My listings"
+msgstr "📋 فهرست های من"
+
+#: app/bot/keyboards.py:74
+msgid "Cancel"
+msgstr "لغو"
+
+#: app/bot/keyboards.py:80
+msgid "✅ Confirm"
+msgstr "✅ تأیید"
+
+#: app/bot/keyboards.py:81
+msgid "✖️ Cancel"
+msgstr "✖️ لغو"
+
+#: app/bot/keyboards.py:96 app/bot/keyboards.py:139
+#, python-brace-format
+msgid "Contact: {title}"
+msgstr "مخاطب: {title}"
+
+#: app/bot/keyboards.py:102 app/bot/keyboards.py:147
+msgid "⬅️ Prev"
+msgstr "⬅️ قبلی"
+
+#: app/bot/keyboards.py:107 app/bot/keyboards.py:152
+msgid "Next ➡️"
+msgstr "بعدی ➡️"
+
+#: app/bot/keyboards.py:118
+#, python-brace-format
+msgid "Mark #{book_id} sold"
+msgstr "کتاب #{book_id} را به عنوان فروخته شده علامت گذاری کنید"
+
+#: app/bot/keyboards.py:158
+msgid "🔎 New Search"
+msgstr "🔎 جستجوی جدید"
+
+#: app/bot/utils.py:27
+msgid "New"
+msgstr "نو"
+
+#: app/bot/utils.py:28
+msgid "Like new"
+msgstr "مثل نو"
+
+#: app/bot/utils.py:29
+msgid "Good"
+msgstr "خوب"
+
+#: app/bot/utils.py:30
+msgid "Acceptable"
+msgstr "قابل قبول"
+
+#: app/bot/utils.py:31
+msgid "Poor"
+msgstr "ضعیف"
+
+#: app/bot/utils.py:44
+#, python-brace-format
+msgid ""
+"<b>{title}</b>\n"
+"Author: {author}\n"
+"Condition: {condition}\n"
+"Price: {price}\n"
+"Listed: {listed}\n"
+"Seller: {seller}\n"
+"Book ID: {book_id}"
 msgstr ""
+"<b>{title}</b>\n"
+"نویسنده: {author}\n"
+"وضعیت: {condition}\n"
+"قیمت: {price}\n"
+"ثبت شده: {listed}\n"
+"فروشنده: {seller}\n"
+"شناسه کتاب: {book_id}"
+
+#: app/bot/utils.py:131
+#, python-brace-format
+msgid ""
+"📚 Someone is interested in your book!\n"
+"\n"
+"Book: {book_title}\n"
+"Buyer: {buyer_contact}\n"
+"Reply directly in Telegram to arrange the exchange."
+msgstr ""
+"📚 کسی به کتاب شما علاقه مند است!\n"
+"\n"
+"کتاب: {book_title}\n"
+"خریدار: {buyer_contact}\n"
+"برای ترتیب تبادل، مستقیماً در تلگرام پاسخ دهید."

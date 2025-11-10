@@ -52,7 +52,7 @@ class Settings(BaseSettings):
         None,
         description="Optional Telegram chat id for administrative alerts",
     )
-    LOCALE = Optional[str] = Field(
+    LOCALE: Optional[str] = Field(
         'en',
         description='Translate code'
     )

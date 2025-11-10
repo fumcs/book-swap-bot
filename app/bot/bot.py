@@ -12,6 +12,7 @@ from aiogram.types import BotCommand, ErrorEvent
 
 from app.config import get_settings
 from app.db.session import dispose_engine
+from app.i18n import T
 from app.logger import logger
 
 from .handlers import router
@@ -47,10 +48,10 @@ def create_dispatcher() -> Dispatcher:
 
 async def setup_bot_commands(bot: Bot) -> None:
     commands = [
-        BotCommand(command="start", description="Show welcome menu"),
-        BotCommand(command="post", description="List a new book"),
-        BotCommand(command="browse", description="Browse available books"),
-        BotCommand(command="mybooks", description="Manage your listings"),
+        BotCommand(command="start", description=T("Show welcome menu")),
+        BotCommand(command="post", description=T("List a new book")),
+        BotCommand(command="browse", description=T("Browse available books")),
+        BotCommand(command="mybooks", description=T("Manage your listings")),
     ]
     await bot.set_my_commands(commands)
 
